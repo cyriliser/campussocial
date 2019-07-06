@@ -1,0 +1,26 @@
+{
+  "name": "campussocial",
+  "version": "1.0.0",
+  "description": "Social Media app for UKZN",
+  "main": "/server/app.js",
+  "scripts": {
+    "start": "nodemon ./server/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyriliser/campussocial.git"
+  },
+  "author": "Siyathokoza Mbatha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cyriliser/campussocial/issues"
+  },
+  "homepage": "https://github.com/cyriliser/campussocial#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.6.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
