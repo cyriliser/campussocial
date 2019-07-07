@@ -18,6 +18,7 @@
   "homepage": "https://github.com/cyriliser/campussocial#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "mongodb": "^3.2.7",
     "mongoose": "^5.6.3"
   },
   "devDependencies": {

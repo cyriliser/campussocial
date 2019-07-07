@@ -1,8 +1,27 @@
 
 //start of module exports
 const express = require('express');
+const path = require('path');
+const mongoose = require('mongoose');
 
+// custom modules
+const config = require('./config/database');
 //end of module exports
+
+//setup db connection
+mongoose.connect(config.database,{ useNewUrlParser: true })
+    .then(() => {
+        console.log('successfully connected to mongodb');
+    })
+    .catch((err)=>{
+        console.log('an error occured and the error is as follows');
+        console.log(err);
+    });
+const db = mongoose.connection;
+
+// import DB models
+const Posts = require('./models/post.js');
+//end of db setup
 
 //init app
 const port = 3000;
@@ -12,13 +31,40 @@ app.listen(port,() => {
 })
 
 //end of app init
+
+//start of middleware
+app.use(express.static(path.join(__dirname,'public'))); //setup static folder
+
+//end of middleware
  
 //begining of routes
 
 //route functions
 const home_g = (req,res) => {
+    posts = Posts.find({},(err,posts) => {
+        if(err){
+            console.log(err);
+          } else {
+            // console.log(posts);
+            return posts;
+          }
+    });
+    console.log(posts);
     res.send('hello world: This is the campus social home page');
+
 }
 //mapping routes to functions
 app.get('/',home_g);  
 //end of routes
+
+//other functions
+const getPosts = () => {
+    Posts.find({},(err,posts) => {
+        if(err){
+            console.log(err);
+          } else {
+            return posts;
+          }
+    });
+}
+
