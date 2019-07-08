@@ -14,18 +14,18 @@ block content
                         button.close(type='button', data-dismiss='modal', aria-label='Close')
                         span(aria-hidden='true') ×
                     .modal-body
-                        form
+                        form(method='POST', action='/posts/add')
                             .form-group
                                 label(for="title") Title
-                                input(type="text", placeholder='Post Title')
+                                input(type="text",name='title', placeholder='Post Title')
 
                             .form-group
-                                label(for="title") Title
-                                input(type="text", placeholder='Post Title') 
+                                label(for="title") Body
+                                input(type="text",name='body', placeholder='Post Body') 
                             
                             .form-group
-                                label(for="title") Title
-                                input(type="text", placeholder='Post Title') 
+                                label(for="title") Image
+                                input(type="text",name='image', placeholder='Post Image') 
 
                             .modal-footer
                                 button.btn.btn-secondary(type='button', data-dismiss='modal') Close
@@ -37,6 +37,6 @@ block content
             each post, i in posts
                 li.post.card.mb-2
                     img.card-img-top(src='/images/' + post.image,alt='image of ' + post.image)
-                    .card-title.border.border-info=post.title
+                    a.card-title.border.border-info(href='/posts/' + post._id)=post.title
                     .card-body=post.body
                     

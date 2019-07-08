@@ -3,6 +3,7 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 // custom modules
 const config = require('./config/database');
@@ -36,9 +37,14 @@ app.listen(port,() => {
 //start of middleware
 app.use(express.static(path.join(__dirname,'public'))); //setup static folder
 
+//body parser middleware
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
 //end of middleware
 
-//start Load View Engine
+//begin Load View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -65,8 +71,13 @@ const home_g = (req,res) => {
     // res.render('home');
 
 }
+
 //mapping routes to functions
-app.get('/',home_g);  
+app.get('/',home_g); 
+
+//bringing routes from routes folder
+const posts = require('./routes/posts');
+app.use('/posts',posts);
 //end of routes
 
 //other functions
