@@ -6,4 +6,4 @@ const PostsSchema = new mongoose.Schema({
     image: String
 });
 
-const Posts = module.exports = mongoose.model('Post',PostsSchema);
+const Post = module.exports = mongoose.model('Post',PostsSchema);

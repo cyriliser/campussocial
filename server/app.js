@@ -78,6 +78,9 @@ app.get('/',home_g);
 //bringing routes from routes folder
 const posts = require('./routes/posts');
 app.use('/posts',posts);
+
+const api = require('./routes/api/posts');
+app.use('/api',api);
 //end of routes
 
 //other functions
