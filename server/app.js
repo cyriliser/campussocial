@@ -23,6 +23,7 @@ const db = mongoose.connection;
 const Posts = require('./models/post.js');
 //end of db setup
 
+
 //init app
 const port = 3000;
 const app = express();
@@ -36,21 +37,32 @@ app.listen(port,() => {
 app.use(express.static(path.join(__dirname,'public'))); //setup static folder
 
 //end of middleware
+
+//start Load View Engine
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+
+//end of loading view engine
+
  
 //begining of routes
 
 //route functions
 const home_g = (req,res) => {
-    posts = Posts.find({},(err,posts) => {
-        if(err){
+    // posts = Posts.find({},(err,posts) => {
+    Posts.find({},(err,posts) => {
+            if(err){
             console.log(err);
           } else {
             // console.log(posts);
-            return posts;
+           res.render('home',{
+               posts: posts
+           });
           }
     });
-    console.log(posts);
-    res.send('hello world: This is the campus social home page');
+    // console.log(posts);
+    // res.send('hello world: This is the campus social home page');
+    // res.render('home');
 
 }
 //mapping routes to functions

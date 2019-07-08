@@ -1,0 +1,9 @@
+/* body */
+body{
+    background-color: #bdbdbd;
+}
+/* navigation*/
+.nav {
+    display: flex !important;
+    flex-direction: column;
+}
