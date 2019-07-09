@@ -55,20 +55,11 @@ app.set('view engine', 'pug');
 
 //route functions
 const home_g = (req,res) => {
-    // posts = Posts.find({},(err,posts) => {
-    Posts.find({},(err,posts) => {
-            if(err){
-            console.log(err);
-          } else {
-            // console.log(posts);
-           res.render('home',{
-               posts: posts
-           });
-          }
+    getPosts().then((posts_arr)=>{
+        res.render('home',{
+            posts: posts_arr
+        })
     });
-    // console.log(posts);
-    // res.send('hello world: This is the campus social home page');
-    // res.render('home');
 
 }
 
@@ -83,14 +74,16 @@ const api = require('./routes/api/posts');
 app.use('/api',api);
 //end of routes
 
-//other functions
-const getPosts = () => {
-    Posts.find({},(err,posts) => {
-        if(err){
-            console.log(err);
-          } else {
-            return posts;
-          }
-    });
+const getPosts = () =>{
+    let posts_arr = Posts.find({})
+        .then((posts_arr)=>{
+            // console.log(posts_arr);
+            return posts_arr;
+        }).catch((err)=>{
+            console.log('\nfrom catch: an error occured and is as follows: \n' +err + '\n');
+            //TODO: do something proper
+            return [];
+        });
+    return posts_arr;  
 }
 
