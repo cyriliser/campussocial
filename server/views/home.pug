@@ -17,15 +17,15 @@ block content
                         form(method='POST', action='/posts/add')
                             .form-group
                                 label(for="title") Title
-                                input(type="text",name='title', placeholder='Post Title')
+                                input.form-control(type="text",name='title', placeholder='Post Title')
 
                             .form-group
                                 label(for="title") Body
-                                input(type="text",name='body', placeholder='Post Body') 
+                                input.form-control(type="text",name='body', placeholder='Post Body') 
                             
                             .form-group
                                 label(for="title") Image
-                                input(type="text",name='image', placeholder='Post Image') 
+                                input.form-control(type="text",name='image', placeholder='Post Image') 
 
                             .modal-footer
                                 button.btn.btn-secondary(type='button', data-dismiss='modal') Close

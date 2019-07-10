@@ -85,11 +85,17 @@ const api_g = (req, res) => {
     ]);
 }
 
+
+const edit_post_g = (req,res)=>{
+    return null;
+}
 //mapping routes to functions
 router.get('/',api_g)
 router.get('/posts',get_posts_g)
 router.get('/posts/:id',get_post_g);
 router.post('/posts/add',add_post_p);
+router.get('/posts/edit/:id',edit_post_g);
+// router.post('/posts/edit/:id',edit_post_p);
 //end of routes
 
 

@@ -1,4 +1,40 @@
 extends layout
 block content
     br
-    h1=post.title
+    .card
+        img.card-img-top(src=`/images/${post.image}`)
+        .under-pic.d-flex.flex-row.justify-content-between
+            .left 
+                h3.card-title.border.border-info=post.title
+            .right 
+                // Button trigger updatePostModal
+                button.btn.btn-info(type='button', data-toggle='modal', data-target='#updatePostModal') Update
+                a.btn.btn-danger(href=`/posts/delete/${post._id}`) Delete
+        p.card-body=post.body
+
+    // updatePostModal
+    #updatePostModal.modal(tabindex='-1', role='dialog', aria-labelledby='updatePostModallLabel', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+
+                .modal-header
+                    h5#exampleModalLabel.modal-title Update Post
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') ×
+                .modal-body
+                    form(method='POST', action=`/posts/update/${post._id}`)
+                        .form-group
+                            label(for="title") Title
+                            input.form-control(type="text",name='title', value=post.title)
+
+                        .form-group
+                            label(for="title") Body
+                            input.form-control(type="text",name='body', value=post.body) 
+                        
+                        .form-group
+                            label(for="title") Image
+                            input.form-control(type="text",name='image', value=post.image) 
+
+                        .modal-footer
+                            button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                            button.btn.btn-primary(type='submit') Update
