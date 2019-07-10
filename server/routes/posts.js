@@ -57,11 +57,22 @@ const update_post_p = (req,res)=>{
         .catch((err)=>{console.log(err);});
 
 }
+
+const delete_post_d = (req,res) =>{
+    const id = req.params.id;
+    Post.findByIdAndDelete(id)
+        .then(()=>{
+            res.status(200);
+            res.send();
+        })
+        .catch(err => {console.log(err);});
+}
 //mapping routes to functions
 router.get('/:id',get_post_g);
 router.post('/add',add_post_p);
-// router.get('/update/:id',update_post_g);
 router.post('/update/:id',update_post_p);
+router.delete('/delete/:id',delete_post_d);
+
 //end of routes
 
 

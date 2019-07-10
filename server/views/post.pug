@@ -9,7 +9,7 @@ block content
             .right 
                 // Button trigger updatePostModal
                 button.btn.btn-info(type='button', data-toggle='modal', data-target='#updatePostModal') Update
-                a.btn.btn-danger(href=`/posts/delete/${post._id}`) Delete
+                a.btn.btn-danger#delete-post-btn(onClick='delete_post()',data-id=post._id) Delete
         p.card-body=post.body
 
     // updatePostModal
