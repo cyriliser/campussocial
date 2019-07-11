@@ -85,6 +85,21 @@ const api_g = (req, res) => {
     ]);
 }
 
+const delete_post_d = (req, res) =>{
+    const id = req.params.id;
+    Post.findByIdAndRemove(id)
+        .then(()=>{
+            res.status(200);
+            res.send('post deleted');
+        })
+        .catch(err => {
+            console.log(`\nan error occured while deleteing post with id :${id}, \nthe error is as follows:\n${err}\n`);
+            res.status(500);
+            res.send('server error, post may not be deleted');
+        });
+    
+}
+
 
 const edit_post_g = (req,res)=>{
     return null;
@@ -94,7 +109,8 @@ router.get('/',api_g)
 router.get('/posts',get_posts_g)
 router.get('/posts/:id',get_post_g);
 router.post('/posts/add',add_post_p);
-router.get('/posts/edit/:id',edit_post_g);
+router.delete('/posts/delete/:id',delete_post_d);
+// router.get('/posts/edit/:id',edit_post_g);
 // router.post('/posts/edit/:id',edit_post_p);
 //end of routes
 

@@ -70,8 +70,8 @@ app.get('/',home_g);
 const posts = require('./routes/posts');
 app.use('/posts',posts);
 
-// const api = require('./routes/api/posts');
-// app.use('/api',api);
+const api = require('./routes/api/posts');
+app.use('/api',api);
 //end of routes
 
 const getPosts = () =>{
