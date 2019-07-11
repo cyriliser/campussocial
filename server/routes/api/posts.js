@@ -101,8 +101,22 @@ const delete_post_d = (req, res) =>{
 }
 
 
-const edit_post_g = (req,res)=>{
-    return null;
+const edit_post_p = (req,res)=>{
+    const id = req.params.id;
+    const post = {};
+    post.title = req.body.title;
+    post.body = req.body.body;
+    post.image = req.body.image;
+    Post.findByIdAndUpdate(id,post,{new:true})
+        .then((updatedpost) =>{
+            res.status(200);
+            res.json(updatedpost);
+        })
+        .catch(err =>{
+            res.status(500);
+            res.send('an error occured post not updated');
+        });
+    
 }
 //mapping routes to functions
 router.get('/',api_g)
@@ -110,8 +124,7 @@ router.get('/posts',get_posts_g)
 router.get('/posts/:id',get_post_g);
 router.post('/posts/add',add_post_p);
 router.delete('/posts/delete/:id',delete_post_d);
-// router.get('/posts/edit/:id',edit_post_g);
-// router.post('/posts/edit/:id',edit_post_p);
+router.put('/posts/update/:id',edit_post_p);
 //end of routes
 
 
